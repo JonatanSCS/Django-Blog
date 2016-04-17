@@ -1,0 +1,6 @@
+*.pyc
+__pycahce__
+myenv
+db.sqlite3
+/static
+.DS_Store
