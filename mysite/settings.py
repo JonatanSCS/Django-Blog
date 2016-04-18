@@ -28,6 +28,17 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+#Facebook login
+SOCIAL_AUTH_FACEBOOK_KEY = '268305686845872'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'f22acfbdc3d30c3fdbcba14006d5b9c7'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/"
+
+
+SOCIAL_AUTH_TWITTER_KEY = 'K7rjBQTPsfS5Z4Tew6YaFKD0z'
+SOCIAL_AUTH_TWITTER_SECRET = 'iLkrSc73q2IXsv4CQ87ujUUEDj0wj2RgNlvdf3z6iDkRlBG2k3'
+
+SOCIAL_AUTH_GITHUB_KEY = '570bc353f62bd63d8191'
+SOCIAL_AUTH_GITHUB_SECRET = '44674ecae54f6dcf9e99703554419fa2969203a0'
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'social.apps.django_app.default',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -64,12 +76,21 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
+
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    'social.backends.twitter.TwitterOAuth',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 
 # Database

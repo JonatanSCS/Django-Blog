@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+	{% if user and not user.is_anonymous %}
+		<h1>Bienvenido {{ user.get_full_name }}.</h1>
+		<a href="{% url 'user-logout' %}" class="loginBtn logoutBtn">Salir</a>
+	{% else %}
+		<h1>Inicia sesión</h1>
+		<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}" class="loginBtn loginBtn--facebook">Registrate con Facebook</a>
+		<a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}" class="loginBtn loginBtn--twitter">
+    	Registrate con Twitter</a>
+	{% endif %}
+{% endblock %}
